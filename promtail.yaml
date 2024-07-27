@@ -1,0 +1,31 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://loki:3100/loki/api/v1/push
+
+scrape_configs:
+  - job_name: quarkus_logs
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: quarkus_logs
+          __path__: /var/log/*log*
+    pipeline_stages:
+      - match:
+          selector: '{job="quarkus_logs"}'
+          stages:
+          - regex:
+              expression: '^(?P<time>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3}\w+) (?P<log_level>\w+) (?P<message>(?s:.*))$'
+      - multiline:
+          # Pattern to match the start of a new log entry
+          firstline: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3}\w+ \w+'
+          # Pattern to match the end of a log entry
+          # Adjust this pattern based on how your multi-line logs are structured
+          # For example, you might want to match a new timestamp
+          max_delay: 5s  # Adjust as needed 

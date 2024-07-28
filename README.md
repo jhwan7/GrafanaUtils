@@ -1,9 +1,9 @@
 # GrafanaUtils
-Boiler Plate + Utils to get a basic Grafana dashboard started
+Boiler Plate + Utils to get a basic Grafana dashboard started with Quarkus
 
-Refer to [docker-compose.yaml](./docker-compose.yaml) to get the Grafana, Loki, and Promtail containers started.
+Refer to [docker-compose.yaml](./scripts/docker-compose.yaml) to get the Grafana, Loki, and Promtail containers started.
 
-Checkout the [config](./config/) folder to customize Grafana, Loki, and Promtail services.
+Checkout the [config](./scripts/config/) folder to customize Grafana, Loki, and Promtail services.
 
 
 Compatible (Partial) Prometheus Dashboard Template:

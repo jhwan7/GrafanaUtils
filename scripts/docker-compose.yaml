@@ -1,21 +1,6 @@
-
 version: '3.4'
 
-networks:
-  app:
-
 services:
-  nginx-app:
-    container_name: nginx-app
-    image: nginx
-    labels:
-      logging: "promtail"
-      logging_jobname: "containerlogs"
-    ports:
-      - 8090:80
-    networks:
-      - app
-
   grafana:
     image: grafana/grafana:latest
     ports:
@@ -26,19 +11,15 @@ services:
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
       - GF_AUTH_DISABLE_LOGIN_FORM=true
-    networks:
-      - app
 
   loki:
     image: grafana/loki:latest
     ports:
       - 3100:3100
     command: -config.file=/etc/loki/local-config.yaml
-    networks:
-      - app
 
   promtail:
-    image:  grafana/promtail:latest
+    image: grafana/promtail:latest
     container_name: promtail
     volumes:
       - ./config/promtail.yaml:/etc/promtail/config.yml
@@ -46,5 +27,15 @@ services:
     command: -config.file=/etc/promtail/config.yml
     depends_on:
       - loki
-    networks:
-      - app
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+volumes:
+  prometheus_data:
+    driver: local

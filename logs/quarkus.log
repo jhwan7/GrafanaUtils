@@ -1,0 +1,7 @@
+2024-07-28 15:17:58.960EDT INFO (Quarkus Main Thread) [io.quarkus.bootstrap.runner.Timing.printStartupTime()]: play 1.0.0-SNAPSHOT on JVM (powered by Quarkus 3.12.3) started in 0.165s. Listening on: http://localhost:8080
+2024-07-28 15:17:58.960EDT INFO (Quarkus Main Thread) [io.quarkus.bootstrap.runner.Timing.printStartupTime()]: Profile dev activated. Live Coding activated.
+2024-07-28 15:17:58.961EDT INFO (Quarkus Main Thread) [io.quarkus.bootstrap.runner.Timing.printStartupTime()]: Installed features: [cdi, micrometer, rest, smallrye-context-propagation, smallrye-openapi, swagger-ui, vertx]
+2024-07-28 15:17:58.961EDT INFO (vert.x-worker-thread-18) [io.quarkus.deployment.dev.RuntimeUpdatesProcessor.doScan()]: Live reload total time: 0.256s 
+2024-07-28 15:17:58.961EDT ERROR (executor-thread-1) [Playground.RestAPI.hello_error()]: Error from Quarkus REST
+2024-07-28 15:17:58.961EDT ERROR (executor-thread-1) [Playground.RestAPI.hello_error()]: / by zero
+2024-07-28 15:18:09.218EDT ERROR (executor-thread-1) [Playground.RestAPI.hello_long()]: Long from Quarkus REST

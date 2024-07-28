@@ -20,12 +20,12 @@ scrape_configs:
       - match:
           selector: '{job="quarkus_logs"}'
           stages:
-          - regex:
-              expression: '^(?P<time>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3}\w+) (?P<log_level>\w+) (?P<message>(?s:.*))$'
+            - regex:
+                expression: '^(?P<time>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3}\w+) (?P<log_level>\w+) (?P<message>(?s:.*))$'
       - multiline:
           # Pattern to match the start of a new log entry
           firstline: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3}\w+ \w+'
           # Pattern to match the end of a log entry
           # Adjust this pattern based on how your multi-line logs are structured
           # For example, you might want to match a new timestamp
-          max_delay: 5s  # Adjust as needed 
+          max_delay: 5s # Adjust as needed
